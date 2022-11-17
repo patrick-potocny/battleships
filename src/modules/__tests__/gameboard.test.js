@@ -27,4 +27,9 @@ describe('Gameboard', () => {
     gameboard.recieveAttack([0, 0])
     expect(gameboard.recieveAttack([0, 1])).toBe('gameEnd')
   });
+
+  test('Populate board', () => {
+    gameboard.populateBoard()
+    console.table(gameboard.board);
+  });
 });
