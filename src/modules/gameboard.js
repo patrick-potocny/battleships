@@ -23,7 +23,7 @@ class Gameboard {
     this.liveShips += 1;
   }
 
-  recieveAttack(cooridnates) {
+  recieveHit(cooridnates) {
     const cell = this.board[cooridnates[0]][cooridnates[1]];
     if (cell === undefined) {
       this.board[cooridnates[0]][cooridnates[1]] = false;
@@ -45,6 +45,7 @@ class Gameboard {
     let usedCoords = [];
     for (const shipLength of shipLengths) {
       const coords = this.coordsGenerator(shipLength, usedCoords);
+      console.log(coords);
       this.placeShip(shipLength, coords);
       usedCoords = usedCoords.concat(coords);
     }
@@ -58,12 +59,12 @@ class Gameboard {
       coords = [];
 
       if (orientation === "h") {
-        const x = Math.floor(Math.random() * 11);
-        const y = Math.floor(Math.random() * (11-shipLen));
+        const x = Math.floor(Math.random() * 10);
+        const y = Math.floor(Math.random() * (10-shipLen));
         for (let i = 0; i < shipLen; i++) coords.push([x, y + i]);
       } else if (orientation === "v") {
-        const x = Math.floor(Math.random() * (11-shipLen));
-        const y = Math.floor(Math.random() * 11);
+        const x = Math.floor(Math.random() * (10-shipLen));
+        const y = Math.floor(Math.random() * 10);
         for (let i = 0; i < shipLen; i++) coords.push([x + i, y]);
       }
 
@@ -83,35 +84,5 @@ class Gameboard {
     return coords
   }
 }
-
-// coordsGen(shipLen, usedcoords)
-// coordsValid = false
-// while not coordsvalid
-// orientation = ['h', 'v'][Math.floor(Math.random() * 2)]
-// coords = []
-
-// if orientation === h
-// x = Math.floor(Math.random() * 11);
-// y = Math.floor(Math.random() * 11-shipLen);
-//for (let i = 0; i < shiplen; i++)
-//coords.push([x, y+i])
-
-// if orientstion === v
-// x = Math.floor(Math.random() * 11-shiplen);
-// y = Math.floor(Math.random() * 11);
-//for (let i = 0; i < shiplen; i++)
-//coords.push([x+1, y])
-
-// coordsValid = true
-// for (let coord of coords) {
-//   coord = coord.toString()
-//   for (let usedCoord of usedCoords) {
-//     usedCoord = usedCoord.toString()
-//     if (coord === usedCoord) {
-//      coordsValid = false
-//      break
-// }
-//   }
-// }
 
 module.exports = Gameboard;

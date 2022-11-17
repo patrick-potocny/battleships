@@ -13,19 +13,19 @@ describe('Gameboard', () => {
   });
 
   test('Hit ship', () => {
-    gameboard.recieveAttack([0, 1])
+    gameboard.recieveHit([0, 1])
     expect(gameboard.board[0][0].lives).toBe(1)
   });
 
   test('miss ship', () => {
-    gameboard.recieveAttack([0, 2])
+    gameboard.recieveHit([0, 2])
     expect(gameboard.board[0][0].lives).toBe(2)
     expect(gameboard.board[0][2]).toBe(false)
   });
 
   test('Sink all ships', () => {
-    gameboard.recieveAttack([0, 0])
-    expect(gameboard.recieveAttack([0, 1])).toBe('gameEnd')
+    gameboard.recieveHit([0, 0])
+    expect(gameboard.recieveHit([0, 1])).toBe('gameEnd')
   });
 
   test('Populate board', () => {
