@@ -6,7 +6,7 @@ describe('Player', () => {
     player = new Player('Player name')
   })
 
-  test('Player recieve random hit ', () => {
-    expect(player.recieveRandomHit()).toEqual(expect.any(String))
+  test('recieve random hit', () => {
+    expect(player.gameboard.recieveRandomHit()).toEqual(expect.any(String))
   });
 }); 

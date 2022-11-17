@@ -3,12 +3,13 @@ const Ship = require("./ship");
 class Gameboard {
   constructor() {
     this.liveShips = 0;
-    // Creating empty board represented by 2D array
+    this.recievedHits = [];
     this.board = null
     this.createEmptyBoard()
   }
 
   createEmptyBoard(){
+    // Creating empty board represented by 2D array
     this.board = new Array(10);
     for (var i = 0; i < this.board.length; i++) {
       this.board[i] = new Array(10);
@@ -45,7 +46,6 @@ class Gameboard {
     let usedCoords = [];
     for (const shipLength of shipLengths) {
       const coords = this.coordsGenerator(shipLength, usedCoords);
-      console.log(coords);
       this.placeShip(shipLength, coords);
       usedCoords = usedCoords.concat(coords);
     }
@@ -82,6 +82,28 @@ class Gameboard {
     }
 
     return coords
+  }
+
+  recieveRandomHit() {
+    let validCoords = false;
+    let hitCoords = [];
+    while (!validCoords) {
+      const x = Math.floor(Math.random() * 10);
+      const y = Math.floor(Math.random() * 10);
+      hitCoords = [x, y];
+
+      validCoords = true;
+      for (let recievedHitCoords of this.recievedHits) {
+        recievedHitCoords = recievedHitCoords.toString();
+        if (recievedHitCoords === hitCoords.toString()) {
+          validCoords = false;
+          break;
+        }
+      }
+    }
+    
+    this.recievedHits.push(hitCoords)
+    return this.recieveHit(hitCoords)
   }
 }
 

@@ -32,4 +32,8 @@ describe('Gameboard', () => {
     gameboard.populateBoard()
     console.table(gameboard.board);
   });
+
+  test('recieve random hit ', () => {
+    expect(gameboard.recieveRandomHit()).toEqual(expect.any(String))
+  });
 });
