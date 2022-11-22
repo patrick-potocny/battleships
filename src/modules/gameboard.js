@@ -1,14 +1,15 @@
 const Ship = require("./ship");
 
 class Gameboard {
-  constructor() {
+  constructor(name) {
+    this.name = name;
     this.liveShips = 0;
     this.recievedHits = [];
-    this.board = null
-    this.createEmptyBoard()
+    this.board = null;
+    this.createEmptyBoard();
   }
 
-  createEmptyBoard(){
+  createEmptyBoard() {
     // Creating empty board represented by 2D array
     this.board = new Array(10);
     for (var i = 0; i < this.board.length; i++) {
@@ -41,8 +42,8 @@ class Gameboard {
   }
 
   populateBoard() {
-    this.createEmptyBoard()
-    const shipLengths = [5, 4, 3, 3, 2, 2]
+    this.createEmptyBoard();
+    const shipLengths = [5, 4, 3, 3, 2, 2];
     let usedCoords = [];
     for (const shipLength of shipLengths) {
       const coords = this.coordsGenerator(shipLength, usedCoords);
@@ -53,17 +54,17 @@ class Gameboard {
 
   coordsGenerator(shipLen, usedCoords) {
     let coordsValid = false;
-    let coords = []
+    let coords = [];
     while (!coordsValid) {
       const orientation = ["h", "v"][Math.floor(Math.random() * 2)];
       coords = [];
 
       if (orientation === "h") {
         const x = Math.floor(Math.random() * 10);
-        const y = Math.floor(Math.random() * (10-shipLen));
+        const y = Math.floor(Math.random() * (10 - shipLen));
         for (let i = 0; i < shipLen; i++) coords.push([x, y + i]);
       } else if (orientation === "v") {
-        const x = Math.floor(Math.random() * (10-shipLen));
+        const x = Math.floor(Math.random() * (10 - shipLen));
         const y = Math.floor(Math.random() * 10);
         for (let i = 0; i < shipLen; i++) coords.push([x + i, y]);
       }
@@ -75,13 +76,13 @@ class Gameboard {
           usedCoord = usedCoord.toString();
           if (coord === usedCoord) {
             coordsValid = false;
-            break; 
+            break;
           }
         }
       }
     }
 
-    return coords
+    return coords;
   }
 
   recieveRandomHit() {
@@ -101,9 +102,9 @@ class Gameboard {
         }
       }
     }
-    
-    this.recievedHits.push(hitCoords)
-    return this.recieveHit(hitCoords)
+
+    this.recievedHits.push(hitCoords);
+    return this.recieveHit(hitCoords);
   }
 }
 

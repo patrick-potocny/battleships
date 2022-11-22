@@ -1,0 +1,127 @@
+// Header
+@keyframes zoomOut {
+  0% {
+    transform: translateY(calc(55vh - 50%)) scale(20000%);
+  }
+  100% {
+    transform: translateY(0) scale(100%);
+  }
+}
+
+.header {
+  width: 100%;
+  height: 10wh;
+  margin: 0 auto;
+  display: flex;  
+  padding-inline: 2rem;
+
+  &-spacer {
+    width: 5rem;
+  }
+
+  &-logo {
+    width: 15rem;
+    // animation: 1s ease-out zoomOut;
+  }
+
+  .header-audio-btn{
+    width: 4rem;
+    height: 4rem;
+    padding: 0.5rem;
+    background-image: url(../assets/images/volume_up_FILL0_wght400_GRAD0_opsz48.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: transparent;
+    border: none;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+
+    &:hover {
+      cursor: pointer;
+      background-color: $clr-hover;
+    }
+  }
+
+  .off {
+    background-image: url(../assets/images/volume_off_FILL0_wght400_GRAD0_opsz48.svg);
+  }
+}
+
+// Main 
+.main {
+  width: $container-width;
+  height: $main-height;
+  margin: 1rem auto;
+
+  &-left {
+    @include main-div
+  }
+
+  &-right {
+    @include main-div
+  }
+}
+
+// Start screen
+.instruction {
+  font-size: 2rem;  
+  text-align: center;
+  line-height: 1;
+}
+
+.arrow {
+  font-size: 4rem;
+}
+
+.ships {
+  width: 15em;
+  height: 19em;
+  margin-inline: auto;
+  transition: 0.3s ease-in;
+  
+  .carrier {
+    width: 15em;
+    background-image: url(../assets/images/Carrier.png);
+  }
+  .submarine {
+    width: 12em;
+    background-image: url(../assets/images/Submarine.png);
+  }
+  .battleship {
+    width: 9em;
+    background-image: url(../assets/images/Battleship.png);
+  }
+  .patrol {
+    width: 6em;
+    background-image: url(../assets/images/PatrolB.png);
+  }
+
+  .ship {
+    height: 3em;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+}
+
+
+
+
+
+
+// Board
+.board {
+  width: 35rem;
+  height: 35rem;
+  margin: 0 auto;
+  border: 1px solid $clr-text;
+}
+
+.board-cell {
+  width:10%;
+  height: 10%;
+  float:left;
+  border: 1px solid $clr-text;
+}
