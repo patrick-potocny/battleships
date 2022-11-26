@@ -1,4 +1,5 @@
 const Game = require('./game')
+import { rotateEl } from "./dragDrop"
 
 function initAudioBtn() {
   const btn = document.querySelector(".header-audio-btn");
@@ -14,6 +15,7 @@ function startNewGame() {
   const rightDiv = document.querySelector('.main-right')
   displayStartScreen()
   displayEmptyBoard(rightDiv, game.player.board)
+  rotateEl()
 }
 
 function displayEmptyBoard(parentDiv, board) {
@@ -37,12 +39,12 @@ function displayStartScreen() {
   const screenHtml = `<p class="instruction">Position your ships by dragging them on board <span class="arrow">&#x2192</span></p>
   <button class="ship-rotate btn">Rotate ships <i class="fa-solid fa-rotate-left"></i></button>
   <div class="ships">
-    <div class="ship carrier"></div>
-    <div class="ship submarine"></div>
-    <div class="ship battleship"></div>
-    <div class="ship battleship"></div>
-    <div class="ship patrol"></div>
-    <div class="ship patrol"></div>
+    <div class="ship carrier" draggable="true" ></div>
+    <div class="ship submarine" draggable="true"></div>
+    <div class="ship battleship" draggable="true"></div>
+    <div class="ship battleship" draggable="true"></div>
+    <div class="ship patrol" draggable="true"></div>
+    <div class="ship patrol" draggable="true"></div>
   </div>
   <button class="random-ships btn">Place ships randomly <i class="fa-solid fa-dice"></i></button>
     <select class="btn" name="difficulty" id="difficulty">
